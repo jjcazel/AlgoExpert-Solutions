@@ -1,3 +1,4 @@
+# O(log(n)) time (average), O(n) (worst) | O(n) space where n is the number of nodes in the BST
 def findClosestValueInBst(tree, target):
     min_distance = float("inf") 
     closest_val = tree.value
