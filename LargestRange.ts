@@ -8,7 +8,6 @@ export function largestRange(array: number[]): [number, number] {
   let greatestRange = 0; // 0
 
   for (let num = minNum; num <= maxNum; num++) { // num = 1
-    console.log('num', num, 'minNum', minNum, 'maxNum', maxNum);
     if (!numsSet.has(num)) {
       currentRangeEdges[0] = num + 1;
       continue;
