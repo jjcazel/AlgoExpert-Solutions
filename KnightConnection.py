@@ -3,11 +3,35 @@
 Write a function knightConnection(knightA, knightB) that takes two lists representing the coordinates of two knights, knightA and knightB, and returns the minimum number of moves needed for one knight to capture the other.
 
 '''
+#O(n*m) time and O(n) space
+from collections import deque
+import math
+
+def knightConnection(knightA, knightB):
+    possible_moves = [
+        [-2, 1], [-1, 2], [1, 2], [2, 1], [2, -1], [1, -2], [-1, -2], [-2, -1]
+    ]
+
+    queue = deque([(knightA[0], knightA[1], 0)])
+    visited = set(tuple(knightA))
+
+    while queue:
+        position = queue.popleft()
+        if position[0] == knightB[0] and position[1] == knightB[1]:
+            return math.ceil(position[2] / 2)
+        for possible_move in possible_moves:
+            new_position = [position[0] + possible_move[0], position[1] + possible_move[1]]
+            new_position_string = tuple(new_position)
+            if new_position_string not in visited:
+                new_position.append(position[2] + 1)
+                queue.append(new_position)
+                visited.add(new_position_string)
 
 from collections import deque
 import math
 
-#O(n*m) time and O(n) space
+
+#O(n*m) time and O(n) space. This solution is basically the same while using a string value to store in the set rather than a tuple
 def knightConnection(knightA, knightB):
     possible_moves = [[-2, 1], [-1, 2], [1, 2], [2, 1], [2, -1], [1, -2], [-1, -2], [-2, -1]]
     
